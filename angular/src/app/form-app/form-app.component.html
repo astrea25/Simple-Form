@@ -1,0 +1,79 @@
+<div class="flex items-center justify-center min-h-screen">
+  <form class="w-full max-w-md p-8 rounded-lg border border-black" [formGroup]="form" (ngSubmit)="submitForm()">
+    <h1 class="text-3xl font-extrabold text-center mb-6">Form</h1>
+
+    <!-- Email -->
+    <div class="mb-4">
+      <label class="block text-gray-700 text-sm font-bold mb-1" for="email">
+        Email:
+      </label>
+      <input
+        type="email"
+        id="email"
+        formControlName="email"
+        placeholder="Enter email here"
+        class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-blue-700"
+        required />
+      <div *ngIf="form.get('email')?.invalid && form.get('email')?.touched" class="text-red-500">
+        <span *ngIf="form.get('email')?.errors?.['required']">Email is required.</span>
+        <span *ngIf="form.get('email')?.errors?.['email']">Please enter a valid email.</span>
+      </div>
+    </div>
+    {{ form.get('email')?.value }}
+    <div>
+      <label class="block text-gray-700 text-sm font-bold mb-1" for="first_name">
+        First Name:
+      </label>
+      <input 
+        type="text" 
+        placeholder="Enter your first name here" 
+        formControlName="firstName"
+        class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-blue-700"
+        required/>
+      <div *ngIf="form.get('firstName')?.invalid && form.get('firstName')?.touched" class="text-red-500">
+        First name is required.
+      </div>
+    </div>
+    {{ form.get('firstName')?.value }}
+
+    <div>
+      <label class="block text-gray-700 text-sm font-bold mb-1" for="last_name">
+        Last Name:
+      </label>
+      <input 
+        type="text" 
+        placeholder="Enter your last name here"
+        formControlName="lastName"
+        class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-blue-700"
+        required/>
+      <div *ngIf="form.get('lastName')?.invalid && form.get('lastName')?.touched" class="text-red-500">
+        Last name is required.
+      </div>
+    </div>
+    {{ form.get('lastName')?.value }}
+
+    <div>
+      <label class="block text-gray-700 text-sm font-bold mb-1" for="phone_number">
+        Phone Number:
+      </label>
+      <input 
+        type="tel" 
+        placeholder="09xx-xxx-xxxx" 
+        formControlName="phoneNumber"
+        class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-blue-700"
+        required/>
+      <div *ngIf="form.get('phoneNumber')?.invalid && form.get('phoneNumber')?.touched" class="text-red-500">
+        <span *ngIf="form.get('phoneNumber')?.errors?.['required']">Phone number is required.</span>
+        <span *ngIf="form.get('phoneNumber')?.errors?.['pattern']">Please follow the format: 09xx-xxx-xxxx.</span>
+      </div>
+    </div>
+    {{ form.get('phoneNumber')?.value }}
+
+    <button 
+      type="submit"
+      [disabled]="form.invalid"
+      class="w-full bg-blue-500 text-white font-bold py-2 rounded hover:bg-blue-600 transition duration-200">
+      Submit
+    </button>
+  </form>
+</div>
